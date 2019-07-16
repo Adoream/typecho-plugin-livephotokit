@@ -1,4 +1,4 @@
-# JS Typecho 
+# LivephotoKit JS Typecho 
 给 Typecho 添加 Livephoto 的支持
 
 ## 使用
