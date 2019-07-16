@@ -6,7 +6,7 @@ require_once __DIR__ . '/Bootstrap.php';
  * 
  * @package LivePhotoKit
  * @author Sora Jin
- * @version 1.0.0
+ * @version 1.1.0
  * @link https://jcl.moe
  */
 class LivePhotoKit_Plugin implements Typecho_Plugin_Interface {
@@ -53,6 +53,12 @@ class LivePhotoKit_Plugin implements Typecho_Plugin_Interface {
      * @return void
      */
     public static function config (Typecho_Widget_Helper_Form $form) {
+        $lversion = json_decode(Bootstrap::fetch (Plugin_Const::GITHUB_REPO_API))->tag_name;
+        if ($lversion > Plugin_Const::VERSION){
+            echo '<p style="font-size:18px;">你正在使用 <a>' . Plugin_Const::VERSION . '</a> 版本的 LivePhotoKit，最新版本为 <a style="color:red;">' . $lversion . '</a><a href="https://github.com/MoeLoli/LivePhotoKit-Typecho"><button type="submit" class="btn btn-warn" style="margin-left:10px;">前往更新</button></a></p>';
+        } else {
+            echo '<p style="font-size:18px;">你正在使用最新版的 LivePhotoKit！</p>';
+        }
         $mode = new Typecho_Widget_Helper_Form_Element_Radio('mode', 
             [
                 '0' => '未开启', 
