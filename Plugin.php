@@ -22,13 +22,6 @@ class LivePhotoKit_Plugin implements Typecho_Plugin_Interface {
         Typecho_Plugin::factory('Widget_Abstract_Contents')->contentEx = array('LivePhotoKit_Plugin', 'parse');
         Typecho_Plugin::factory('Widget_Archive')->header = array('LivePhotoKit_Plugin', 'outputHeader');
         Typecho_Plugin::factory('Widget_Archive')->footer = array('LivePhotoKit_Plugin', 'outputFooter');
-        
-        Bootstrap::fetch ("https://api.aim.moe/Counter/Plugin", [
-            'siteName' => $GLOBALS['options']->title,
-            'siteUrl' => $GLOBALS['options']->siteUrl,
-            'plugin' => 'LivephotoKit',
-            'version' => Plugin_Const::VERSION
-        ], 'POST');
     }
     
     /**
@@ -39,11 +32,7 @@ class LivePhotoKit_Plugin implements Typecho_Plugin_Interface {
      * @return void
      * @throws Typecho_Plugin_Exception
      */
-    public static function deactivate() {
-        $data = Bootstrap::fetch ("https://api.aim.moe/Counter/Plugin?siteName=" . $GLOBALS['options']->title . '&siteUrl=' . $GLOBALS['options']->siteUrl . '&plugin=LivephotoKit');
-        $data = json_decode ($data, true);
-        Bootstrap::fetch ("https://api.aim.moe/Counter/Plugin/" . $data[0]->pid, 'DELETE');
-    }
+    public static function deactivate() {}
     
     /**
      * 获取插件配置面板
